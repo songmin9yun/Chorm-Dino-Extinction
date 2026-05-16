@@ -44,7 +44,7 @@ public class ObjectPool : MonoBehaviour
             obj.SetActive(false);
             HeartPool.Add(obj);
         }
-}
+    }
 
     public GameObject PoopGet()
     {
