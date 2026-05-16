@@ -3,7 +3,6 @@ using System.Drawing;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using TMPro;
 using UnityEngine.SocialPlatforms.Impl;
 
 
@@ -11,20 +10,18 @@ public class PlayerMove : MonoBehaviour
 {
     [SerializeField]
     private Rigidbody2D rb;
-    [SerializeField] private int hp;
-    [SerializeField] private TextMeshProUGUI hpText;
-    [SerializeField] private TextMeshProUGUI scoreText;
+    public static int hp;
     [SerializeField] private float Speed = 12f;
-
-    private bool isGrounded;
+    public bool isGrounded;
     public float jumpForce = 5f;
-    
-    private float a;
+
+    public float x;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        hpText.text = $"HP: {hp}"; // 입력은 Update에서 받기 이동은 velocity로 바꾸기
-        scoreText.text = $"Score: {Poop.Score}";
+        hp = 3;
+         // 입력은 Update에서 받기 이동은 velocity로 바꾸기
         rb = GetComponent<Rigidbody2D>();
         
 
@@ -32,18 +29,20 @@ public class PlayerMove : MonoBehaviour
 
     void Update()
     {
-        a = Input.GetAxisRaw("Horizontal");
-        scoreText.text = $"Score: {Poop.Score}";
+        x = Input.GetAxisRaw("Horizontal");
 
-        if (Input.GetKeyDown(KeyCode.W) && isGrounded)
+        if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow))
         {
-            jump();
+            if (isGrounded)
+            {
+                jump();
+            }
         }
     }
     
     private void FixedUpdate()
     {
-        rb.linearVelocity = new Vector2(a * Speed, rb.linearVelocity.y);
+        rb.linearVelocity = new Vector2(x * Speed, rb.linearVelocity.y);
 
         if (rb.linearVelocity.x < 0)
         {
@@ -66,7 +65,7 @@ public class PlayerMove : MonoBehaviour
 
     private void jump()
     {
-        rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse); 
+        rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
     }
     
     public void OnTriggerEnter2D(Collider2D collision)
@@ -74,7 +73,6 @@ public class PlayerMove : MonoBehaviour
         if (collision.CompareTag("poop"))
         {
             hp--;
-            hpText.text = $"HP: {hp}";
             if (hp < 1)
             {
                 SceneManager.LoadScene("TitleScene");
@@ -83,7 +81,11 @@ public class PlayerMove : MonoBehaviour
             collision.gameObject.SetActive(false);
         }
 
-        
+        if (collision.CompareTag("heart"))
+        {
+            hp++;
+            collision.gameObject.SetActive(false);
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)

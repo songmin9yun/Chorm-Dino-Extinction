@@ -6,6 +6,7 @@ TagManager:
   tags:
   - poop
   - Wall
+  - heart
   layers:
   - Default
   - TransparentFX

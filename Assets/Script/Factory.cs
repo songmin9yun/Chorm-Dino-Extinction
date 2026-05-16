@@ -1,21 +1,21 @@
 using Unity.Mathematics;
 using UnityEngine;
 using Random = UnityEngine.Random;
-
+using UnityEngine.SocialPlatforms.Impl;
 
 public class Factory : MonoBehaviour
 {
-    [SerializeField] private float maxTime;
-    [SerializeField] private float a;
+    [field: SerializeField] public float spawnTime = 0.35f;
+    [field: SerializeField] public float MaxSpawnTime = 0.1f;
     [SerializeField] private float currentTime;
-
-    // Update is called once per frame
+    private int heartcount = 1;
+    
     void Update()
     {
         currentTime += Time.deltaTime;
-        if (currentTime >= maxTime)
+        if (currentTime >= spawnTime)
         {
-            GameObject newPoop = GetComponent<ObjectPool>().Get();
+            GameObject newPoop = GetComponent<ObjectPool>().PoopGet();
             if (newPoop != null)
             {
                 newPoop.transform.position = new Vector3(Random.Range(-18f, 18f), 15f);
@@ -24,9 +24,20 @@ public class Factory : MonoBehaviour
             currentTime = 0;
         }
 
-        if (maxTime > a)
+        if (spawnTime > MaxSpawnTime)
         {
-            maxTime -= 0.00001f;
+            spawnTime -= 0.00001f;
+        }
+
+        if (Poop.Score / 200 == heartcount)
+        {
+            GameObject newHeart = GetComponent<ObjectPool>().HeartGet();
+            if (newHeart != null)
+            {
+                newHeart.transform.position = new Vector3(Random.Range(-18f, 18f), -9f);
+            }
+
+            heartcount++;
         }
     }
 }

@@ -2,32 +2,21 @@
     using Unity.VectorGraphics;
     using Unity.VisualScripting;
     using UnityEngine;
+    using System.Collections;
     using UnityEngine.SceneManagement;
-    using TMPro;
+    using UnityEngine.SocialPlatforms.Impl;
 
     public class SceneLoader : MonoBehaviour
-    {
-        
-        [SerializeField] private TextMeshProUGUI scoreText;
-
-        private void Start()
-        {
-            scoreText.text = $"Score: {Poop.Score}";
-        }
-        
-        
-        public void GameStart()
-        {
-            SceneManager.LoadScene("TitleScene");
-        }
+    { // 오류: 텍스트메세지 매니저 따로만들어서 하기, 버튼 초기화 되서 안눌림
 
         public void OnPressStartButton()
         {
-            SceneManager.LoadScene("GameScene");
             Poop.Score = 0;
+            SceneManager.LoadScene("GameScene");
+            
         }
 
-        public void OnPressQuitButton()
+        public void OnPressQuitButton()  
         {
             Application.Quit();
         }
