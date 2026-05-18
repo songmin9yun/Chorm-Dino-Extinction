@@ -1,21 +1,18 @@
-using Unity.Mathematics;
 using UnityEngine;
 using Random = UnityEngine.Random;
-using UnityEngine.SocialPlatforms.Impl;
 
 public class Factory : MonoBehaviour
 {
     [field: SerializeField] public float spawnTime = 0.35f;
-    [field: SerializeField] public float MaxSpawnTime = 0.1f;
+    [field: SerializeField] public float maxSpawnTime = 0.1f;
     [SerializeField] private float currentTime;
-    private int heartcount = 1;
-    
+    public int Heartcount = 1;
+
     void Update()
     {
-        currentTime += Time.deltaTime;
         if (currentTime >= spawnTime)
         {
-            GameObject newPoop = GetComponent<ObjectPool>().PoopGet();
+            GameObject newPoop = ObjectPool.Instance.PoopGet();
             if (newPoop != null)
             {
                 newPoop.transform.position = new Vector3(Random.Range(-18f, 18f), 15f);
@@ -23,21 +20,26 @@ public class Factory : MonoBehaviour
             //Instantiate(PoopObject, new Vector3(Random.Range(-18f, 18f), 15f), quaternion.identity);
             currentTime = 0;
         }
+        
 
-        if (spawnTime > MaxSpawnTime)
+        if (Poop.Score >= Heartcount * 200)
         {
-            spawnTime -= 0.00001f;
-        }
-
-        if (Poop.Score / 200 == heartcount)
-        {
-            GameObject newHeart = GetComponent<ObjectPool>().HeartGet();
+            GameObject newHeart = ObjectPool.Instance.HeartGet();
             if (newHeart != null)
             {
-                newHeart.transform.position = new Vector3(Random.Range(-18f, 18f), -9f);
+                newHeart.transform.position = new Vector3(Random.Range(-17.2f, 17.2f), -9f);
             }
+            Heartcount++;
+        }
+    }
 
-            heartcount++;
+    void FixedUpdate()
+    {
+        currentTime += Time.fixedDeltaTime;
+        
+        if (spawnTime > maxSpawnTime)
+        {
+            spawnTime -= 0.00008f;
         }
     }
 }

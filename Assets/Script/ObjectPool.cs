@@ -31,6 +31,7 @@ public class ObjectPool : MonoBehaviour
     void Start()
     {
         PoopPool = new List<GameObject>();
+        HeartPool = new List<GameObject>();
         for (int i = 0; i < maxObject; i++)
         {
             GameObject obj = Instantiate(PoopPrefab,parent);    

@@ -5,7 +5,7 @@ using UnityEngine.SocialPlatforms.Impl;
 public class UIManager : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI scoreText;
-    [SerializeField] private TextMeshProUGUI hpText;
+    [SerializeField] private TextMeshPro hpText;
  
     
     void Start()
@@ -17,7 +17,7 @@ public class UIManager : MonoBehaviour
 
         if (hpText != null)
         {
-            hpText.text = $"HP: {PlayerMove.hp}";
+            hpText.text = $"HP:{PlayerMove.hp}";
         }
     }
 

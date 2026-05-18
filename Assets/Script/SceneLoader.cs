@@ -3,7 +3,6 @@
     using Unity.VisualScripting;
     using UnityEngine;
     using UnityEngine.SceneManagement;
-    using TMPro;
 
     public class SceneLoader : MonoBehaviour
     {
