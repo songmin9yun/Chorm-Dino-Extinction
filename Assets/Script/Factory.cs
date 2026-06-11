@@ -15,19 +15,18 @@ public class Factory : MonoBehaviour
             GameObject newPoop = ObjectPool.Instance.PoopGet();
             if (newPoop != null)
             {
-                newPoop.transform.position = new Vector3(Random.Range(-18f, 18f), 15f);
+                newPoop.transform.position = new Vector3(Random.Range(-17.2f, 7.5f), 15f); // 코루틴 Coroutines
             }
-            //Instantiate(PoopObject, new Vector3(Random.Range(-18f, 18f), 15f), quaternion.identity);
             currentTime = 0;
         }
         
 
-        if (Poop.Score >= Heartcount * 200)
+        if (Timer.score >= Heartcount * 200)
         {
             GameObject newHeart = ObjectPool.Instance.HeartGet();
             if (newHeart != null)
             {
-                newHeart.transform.position = new Vector3(Random.Range(-17.2f, 17.2f), -9f);
+                newHeart.transform.position = new Vector3(Random.Range(-17.2f, 7.5f), 15f);
             }
             Heartcount++;
         }
@@ -35,11 +34,11 @@ public class Factory : MonoBehaviour
 
     void FixedUpdate()
     {
-        currentTime += Time.fixedDeltaTime;
+        currentTime += Time.fixedDeltaTime/2;
         
         if (spawnTime > maxSpawnTime)
         {
-            spawnTime -= 0.00008f;
+            spawnTime -= 0.00004f;
         }
     }
 }

@@ -5,39 +5,50 @@ public class Poop : MonoBehaviour
     public float _speed = 0f;
     public float followspeed = 0;
     public Transform Player;
-
+    
+    [SerializeField] private Rigidbody2D rb;
+    [SerializeField] private TrailRenderer trail;
+    
     public static int Score = 0;
-
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    
     void Start()
     {
         _speed = 0;
         followspeed = 0;
         Player = GameObject.FindWithTag("Player").transform;
+        rb = GetComponent<Rigidbody2D>();
     }
 
     
     private void FixedUpdate()
     {
-        Vector3 dir;
         if (transform.position.x > Player.position.x)
         {
-            dir = new Vector3(-followspeed, -_speed, 0);
+            rb.linearVelocity = new Vector2(-followspeed, -_speed + rb.linearVelocity.y);
         }
         else
         {
-            dir = new Vector3(followspeed, -_speed, 0);
+            rb.linearVelocity = new Vector2(followspeed, -_speed + rb.linearVelocity.y);
         }
-        
-        transform.position += dir * Time.fixedDeltaTime;
-        _speed += Time.fixedDeltaTime / 4;
-        followspeed += Time.fixedDeltaTime / 40;
+        _speed += Time.fixedDeltaTime / 400;
+        followspeed += Time.fixedDeltaTime / 80;
         
     }
 
     private void OnBecameInvisible()
     {
-        gameObject.SetActive(false);
         Score++;
+        gameObject.SetActive(false);
+        
+    }
+
+    public void StartTrail()
+    {
+        trail.emitting = true;
+    }
+
+    public void StopTrail()
+    {
+        trail.emitting = false;
     }
 }

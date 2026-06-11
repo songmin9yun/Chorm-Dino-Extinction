@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using TMPro;
 using UnityEngine.SocialPlatforms.Impl;
@@ -5,34 +6,23 @@ using UnityEngine.SocialPlatforms.Impl;
 public class UIManager : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI scoreText;
-    [SerializeField] private TextMeshPro hpText;
- 
+    [SerializeField] private TextMeshProUGUI timeText;
     
     void Start()
     {
         if(scoreText != null)
         {
-            scoreText.text = $"Score: {Poop.Score}";
+            scoreText.text = $"HI {Poop.Score}";
         }
-
-        if (hpText != null)
+        if (timeText != null)
         {
-            hpText.text = $"HP:{PlayerMove.hp}";
+            timeText.text = $"HI {Timer.highScore} {Timer.score}";
         }
     }
 
-    // Update is called once per frame
     void Update()
     {
-        if(scoreText != null)
-        {
-            scoreText.text = $"Score: {Poop.Score}";
-        }
-
-        if (hpText != null)
-        {
-            hpText.text = $"HP: {PlayerMove.hp}";
-        }
+        timeText.text = $"HI {Timer.highScore:00000} {Mathf.CeilToInt(Timer.score):00000}";
     }
-    
+    // 바꿜때 마다 갱신되게 만들기
 }

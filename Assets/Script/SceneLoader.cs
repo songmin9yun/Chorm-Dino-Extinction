@@ -6,11 +6,6 @@
 
     public class SceneLoader : MonoBehaviour
     {
-        public void GameStart()
-        {
-            SceneManager.LoadScene("TitleScene");
-        }
-
         public void OnPressStartButton()
         {
             Poop.Score = 0;

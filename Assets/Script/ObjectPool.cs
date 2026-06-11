@@ -9,8 +9,8 @@ public class ObjectPool : MonoBehaviour
     public int maxObject = 30;
     public int maxObject2 = 5;
     public List<GameObject> PoopPool;
-    public List<GameObject> HeartPool;
-
+    public List<GameObject> HeartPool; //딕셔너리 Dictionary로 List 하나로 만들고 Key룰 주고 가져오기
+    
     public static ObjectPool Instance = null;
 
     public Transform parent;
@@ -62,7 +62,7 @@ public class ObjectPool : MonoBehaviour
     
     public GameObject HeartGet()
     {
-        foreach (GameObject obj in HeartPool)
+        foreach (GameObject obj in HeartPool) // 한도가 초과되면 오브젝트풀 한도 늘리기에 추가해서 
         {
             if (!obj.activeInHierarchy)
             {
