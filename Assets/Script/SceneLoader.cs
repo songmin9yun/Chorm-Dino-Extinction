@@ -8,7 +8,6 @@
     {
         public void OnPressStartButton()
         {
-            Poop.Score = 0;
             SceneManager.LoadScene("GameScene");
         }
 

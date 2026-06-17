@@ -13,19 +13,25 @@ public class Timer : MonoBehaviour
 
     void Update()
     {
-        timer += Time.deltaTime;
-        if (timer >= 0.1)
+        if (ColorChange.isclicked == true)
         {
-            score++;
-            timer = 0;
+            timer += Time.deltaTime;
+            if (timer >= 0.1)
+            {
+                score++;
+                timer = 0;
+            }
         }
     }
 
     public void ResetTimer()
     {
-        if (highScore < score)
+        if (ColorChange.isclicked == true)
         {
-            highScore = score;
+            if (highScore < score)
+            {
+                highScore = score;
+            }
         }
     }
 }

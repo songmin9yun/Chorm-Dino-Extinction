@@ -10,35 +10,43 @@ public class Factory : MonoBehaviour
 
     void Update()
     {
-        if (currentTime >= spawnTime)
+        if (ColorChange.isclicked == true)
         {
-            GameObject newPoop = ObjectPool.Instance.PoopGet();
-            if (newPoop != null)
+            if (currentTime >= spawnTime)
             {
-                newPoop.transform.position = new Vector3(Random.Range(-17.2f, 7.5f), 15f); // 코루틴 Coroutines
+                GameObject newPoop = ObjectPool.Instance.WifiGet();
+                if (newPoop != null)
+                {
+                    newPoop.transform.position = new Vector3(Random.Range(-17.2f, 7.5f), 15f); // 코루틴 Coroutines
+                }
+                currentTime = 0;
             }
-            currentTime = 0;
-        }
         
 
-        if (Timer.score >= Heartcount * 200)
-        {
-            GameObject newHeart = ObjectPool.Instance.HeartGet();
-            if (newHeart != null)
+            if (Timer.score >= Heartcount * 100)
             {
-                newHeart.transform.position = new Vector3(Random.Range(-17.2f, 7.5f), 15f);
+                GameObject newHeart = ObjectPool.Instance.HeartGet();
+            
+                if (newHeart != null)
+                {
+                    newHeart.transform.position = new Vector3(Random.Range(-17.2f, 7.5f), 15f);
+                    Heartcount++;
+                }
+            
             }
-            Heartcount++;
         }
     }
 
     void FixedUpdate()
     {
-        currentTime += Time.fixedDeltaTime/2;
-        
-        if (spawnTime > maxSpawnTime)
+        if (ColorChange.isclicked == true)
         {
-            spawnTime -= 0.00004f;
+            currentTime += Time.fixedDeltaTime/1.5f;
+        
+            if (spawnTime > maxSpawnTime)
+            {
+                spawnTime -= 0.00006f;
+            }
         }
     }
 }

@@ -1,14 +1,13 @@
 using UnityEngine;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 
 public class ObjectPool : MonoBehaviour
 {
-    public GameObject PoopPrefab;
+    public GameObject WifiPrefab;
     public GameObject HeartPrefab;
     public int maxObject = 30;
     public int maxObject2 = 5;
-    public List<GameObject> PoopPool;
+    public List<GameObject> WifiPool;
     public List<GameObject> HeartPool; //딕셔너리 Dictionary로 List 하나로 만들고 Key룰 주고 가져오기
     
     public static ObjectPool Instance = null;
@@ -16,6 +15,8 @@ public class ObjectPool : MonoBehaviour
     public Transform parent;
     void Awake()
     {
+        
+        
         if (Instance == null)
         {
             Instance = this;
@@ -25,18 +26,15 @@ public class ObjectPool : MonoBehaviour
             Destroy(gameObject);
         }
     }
-    
-    //family == Father And Mother I Love You
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        PoopPool = new List<GameObject>();
+        WifiPool = new List<GameObject>();
         HeartPool = new List<GameObject>();
         for (int i = 0; i < maxObject; i++)
         {
-            GameObject obj = Instantiate(PoopPrefab,parent);    
+            GameObject obj = Instantiate(WifiPrefab,parent);    
             obj.SetActive(false);
-            PoopPool.Add(obj);
+            WifiPool.Add(obj);
         }
         
         for (int i = 0; i < maxObject2; i++)
@@ -47,9 +45,9 @@ public class ObjectPool : MonoBehaviour
         }
     }
 
-    public GameObject PoopGet()
+    public GameObject WifiGet()
     {
-        foreach (GameObject obj in PoopPool)
+        foreach (GameObject obj in WifiPool)
         {
             if (!obj.activeInHierarchy)
             {

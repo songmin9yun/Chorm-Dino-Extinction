@@ -10,7 +10,7 @@ public class ErrorImage : MonoBehaviour
         sr = GetComponent<SpriteRenderer>();
     }
 
-    public void change()
+    void Update()
     {
         if (PlayerMove.hp <= num)
         {

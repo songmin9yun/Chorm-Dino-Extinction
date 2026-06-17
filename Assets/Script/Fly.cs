@@ -20,7 +20,10 @@ public class Fly : MonoBehaviour
     
     void FixedUpdate()
     {
-        rb.linearVelocity = new Vector2(Speed, rb.linearVelocity.y);
+        if (ColorChange.isclicked == true)
+        {
+            rb.linearVelocity = new Vector2(Speed, rb.linearVelocity.y);
+        }
     }
 
     private void OnBecameInvisible()

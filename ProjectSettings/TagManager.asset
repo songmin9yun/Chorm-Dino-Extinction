@@ -4,10 +4,10 @@
 TagManager:
   serializedVersion: 3
   tags:
-  - poop
   - Wall
   - heart
   - uiManager
+  - wifi
   layers:
   - Default
   - TransparentFX

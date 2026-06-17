@@ -5,17 +5,15 @@ using UnityEngine.SocialPlatforms.Impl;
 
 public class PlayerMove : MonoBehaviour
 {
-    [SerializeField]
-    private Rigidbody2D rb;
-
+    [SerializeField] private Rigidbody2D rb;
     [SerializeField] private Imagechange imagechange;
-    //[SerializeField] private ErrorImage errorImage;
     [SerializeField] private UIManager UIManager;
+    
     public static int hp;
+    public bool I_frames;
 
-    // [Header("Ground Check")]
-    // [SerializeField] private float groundDistance = 0.2f;
-    // [SerializeField] private LayerMask groundLayer;
+    public Material flashMaterial;
+    public Material defaultMaterial;
     
     [Header("Move")]
     [SerializeField] private float Speed = 15f;
@@ -41,6 +39,7 @@ public class PlayerMove : MonoBehaviour
     void Start()
     {
         Speed = 10f;
+        I_frames = false;
         
         imagechange.change();
     }
@@ -55,11 +54,11 @@ public class PlayerMove : MonoBehaviour
             isRunning = true;
             if (Speed < 20f && isGrounded && Mathf.Abs(rb.linearVelocity.x) > 0.1f)
             {
-                Speed += 0.05f;
+                Speed += 30f * Time.deltaTime;
             }
             else if (Speed > 10f && isGrounded)
             {
-                Speed -= 0.05f;
+                Speed -= 30f * Time.deltaTime;
             }
         }
         else
@@ -67,7 +66,7 @@ public class PlayerMove : MonoBehaviour
             isRunning = false;
             if (Speed > 10f && isGrounded)
             {
-                Speed -= 0.05f;
+                Speed -= 30f * Time.deltaTime;
             }
         }
         
@@ -96,6 +95,7 @@ public class PlayerMove : MonoBehaviour
         {
             sr.flipX = false;
         }
+        
 
         if (Mathf.Abs(rb.linearVelocity.x) > 0.1f && isRunning && isGrounded) 
         {
@@ -118,17 +118,22 @@ public class PlayerMove : MonoBehaviour
     
     public void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("poop"))
+        if (collision.CompareTag("wifi"))
         {
             if (0 < hp && hp < imagechange.srLen)
             {
-                hp--;
-                imagechange.change();
-                //errorImage.change();
-                if (hp < 1)
+                if (I_frames == false)
                 {
-                    timer.ResetTimer();
-                    SceneManager.LoadScene("TitleScene");
+                    Flash();
+                
+                    hp--;
+                    imagechange.change();
+                    //errorImage.change();
+                    if (hp < 1)
+                    {
+                        timer.ResetTimer();
+                        SceneManager.LoadScene("TitleScene");
+                    }
                 }
                 collision.gameObject.SetActive(false);
             }
@@ -139,6 +144,8 @@ public class PlayerMove : MonoBehaviour
         {
             if (0 < hp && hp < imagechange.srLen - 1)
             {
+                Flash();
+                
                 hp++;
                 imagechange.change();
                 //errorImage.change();
@@ -147,18 +154,6 @@ public class PlayerMove : MonoBehaviour
             
         }
     }
-
-    //void GroundedCheck()
-    //{
-        // RaycastHit2D hit =
-        //     Physics2D.Raycast(
-        //         transform.position,
-        //         Vector2.down,
-        //         groundDistance,
-        //         groundLayer);
-        //
-        // isGrounded = hit.collider != null;
-    //}
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -174,6 +169,20 @@ public class PlayerMove : MonoBehaviour
         {
             isGrounded = false;
         }
+    }
+
+
+    void Flash()
+    {
+        I_frames = true;
+        GetComponent<SpriteRenderer>().material = flashMaterial;
+        Invoke("AfterFlash", 0.5f);
+    }
+
+    void AfterFlash()
+    {
+        I_frames = false;
+        GetComponent<SpriteRenderer>().material = defaultMaterial;
     }
 }
 
