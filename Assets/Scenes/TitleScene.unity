@@ -501,9 +501,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 298718843f4f684499bdd845b88958a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UIManager
-  scoreText: {fileID: 0}
-  hpText: {fileID: 0}
   timeText: {fileID: 67266044}
+  conectingText: {fileID: 0}
+  warningtext1: {fileID: 0}
+  warningtext2: {fileID: 0}
+  wifiText: {fileID: 0}
+  image: {fileID: 0}
+  imageColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!4 &411416289
 Transform:
   m_ObjectHideFlags: 0
@@ -1028,7 +1032,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Wifi contected
+  m_text: Wifi connected
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 762b77c9120a7bb4aabd7754ded3a4b6, type: 2}
   m_sharedMaterial: {fileID: 4574910040047120172, guid: 762b77c9120a7bb4aabd7754ded3a4b6, type: 2}

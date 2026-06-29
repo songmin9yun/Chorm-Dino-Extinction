@@ -187,8 +187,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::NightManager
   sprite: {fileID: 0}
+  text: {fileID: 0}
+  img: {fileID: 0}
   currentColor: {r: 0.48235294, g: 0.48235294, b: 0.48235294, a: 1}
   changeColor: {r: 1, g: 1, b: 1, a: 1}
   nightCount: 1
   nightRange: 350
   changeTime: 1
+  code: 0
