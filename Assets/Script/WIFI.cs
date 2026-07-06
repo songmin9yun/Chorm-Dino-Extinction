@@ -2,7 +2,7 @@ using UnityEditor.Searcher;
 using UnityEngine;
 using System.Collections;
 
-public class Poop : MonoBehaviour
+public class WIFI : MonoBehaviour
 {
     public float _speed = 0;
     public float followspeed = 0;
