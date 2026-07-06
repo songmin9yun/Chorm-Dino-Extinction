@@ -109,6 +109,6 @@ public class UIManager : MonoBehaviour
             }
         }
 
-        return "연결 안 됨";
+        return "Chorm WIFI";
     }
 }

@@ -42,7 +42,7 @@ public class WIFI : MonoBehaviour
         {
             rb.linearVelocity = new Vector2(followspeed, -_speed + rb.linearVelocity.y);
         }
-        _speed += Time.fixedDeltaTime / 200;
+        _speed += Time.fixedDeltaTime / 400;
         //followspeed += Time.fixedDeltaTime / 40;
     }
     
