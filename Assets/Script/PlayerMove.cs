@@ -8,6 +8,7 @@ public class PlayerMove : MonoBehaviour
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private Imagechange imagechange;
     [SerializeField] private UIManager UIManager;
+    [SerializeField] private Sound sound;
     
     public static int hp;
     public bool I_frames;
@@ -78,6 +79,7 @@ public class PlayerMove : MonoBehaviour
             if (isGrounded)
             {
                 jump();
+                sound.jumpAudioPlay();
                 animator.SetTrigger("stop");
             }
         }
@@ -132,6 +134,7 @@ public class PlayerMove : MonoBehaviour
                     if (hp < 1)
                     {
                         timer.ResetTimer();
+                        sound.dieAudioPlay();
                         SceneManager.LoadScene("TitleScene");
                     }
                 }

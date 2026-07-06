@@ -38,7 +38,7 @@ public class ObjectPool : MonoBehaviour
         
         for (int i = 0; i < maxObject; i++)
         {
-            GameObject obj = Instantiate(WifiPrefab,parent);    
+                GameObject obj = Instantiate(WifiPrefab,parent);    
             obj.SetActive(false);
             WifiPool.Add(obj);
         }

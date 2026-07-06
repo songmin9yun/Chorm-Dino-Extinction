@@ -5,9 +5,7 @@ using Process = System.Diagnostics.Process;
 
 public class UIManager : MonoBehaviour
 {
-    [SerializeField] private TextMeshProUGUI timeText;
-    [SerializeField] private TextMeshProUGUI conectingText;
-    
+    public TextMeshProUGUI conectingText;
     public TextMeshProUGUI warningtext1;
     public TextMeshProUGUI warningtext2;
     public TextMeshProUGUI wifiText;
@@ -28,10 +26,6 @@ public class UIManager : MonoBehaviour
     
     void Start()
     {
-        if (timeText != null)
-        {
-            timeText.text = $"HI {Timer.highScore} {Timer.score}";
-        }
         if (conectingText != null)
         {
             conectingText.text = $"연결중{dot}";
@@ -46,7 +40,7 @@ public class UIManager : MonoBehaviour
 
     void Update()
     {
-        timeText.text = $"HI {Timer.highScore:00000} {Mathf.CeilToInt(Timer.score):00000}";
+        
         if (conectingText != null)
         {
             conectingText.text = $"연결중{dot}";

@@ -1,5 +1,6 @@
 using UnityEditor.Searcher;
 using UnityEngine;
+using System.Collections;
 
 public class Poop : MonoBehaviour
 {
@@ -9,14 +10,26 @@ public class Poop : MonoBehaviour
     
     [SerializeField] private Rigidbody2D rb;
 
+    [SerializeField] private ParticleOff particleOff;
+
+
+    void Awake()
+    {
+        rb = GetComponent<Rigidbody2D>();
+        particleOff = GetComponent<ParticleOff>();
+        Player = GameObject.FindWithTag("Player").transform;    
+    }
+    
     void Start()
     {
         _speed = 0;
         followspeed = 0;
-        Player = GameObject.FindWithTag("Player").transform;
-        rb = GetComponent<Rigidbody2D>();
     }
-    
+
+    void OnEnable()
+    {
+        particleOff.particleOn();
+    }
 
     
     private void FixedUpdate()
@@ -30,6 +43,23 @@ public class Poop : MonoBehaviour
             rb.linearVelocity = new Vector2(followspeed, -_speed + rb.linearVelocity.y);
         }
         _speed += Time.fixedDeltaTime / 200;
-        followspeed += Time.fixedDeltaTime / 40;
+        //followspeed += Time.fixedDeltaTime / 40;
+    }
+    
+    public void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("resetWall"))
+        {
+            StartCoroutine(DisableObject());
+        }
+    }
+    
+    IEnumerator DisableObject()
+    {
+        particleOff.particleOff();
+
+        yield return new WaitForSeconds(0.1f);
+
+        gameObject.SetActive(false);
     }
 }

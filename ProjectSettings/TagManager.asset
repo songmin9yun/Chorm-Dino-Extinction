@@ -8,6 +8,7 @@ TagManager:
   - heart
   - uiManager
   - wifi
+  - resetWall
   layers:
   - Default
   - TransparentFX
