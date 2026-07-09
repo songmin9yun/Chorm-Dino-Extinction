@@ -109,6 +109,6 @@ public class UIManager : MonoBehaviour
             }
         }
 
-        return "Chorm WIFI";
+        return "Chrome WIFI";
     }
 }

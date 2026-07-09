@@ -21,6 +21,4 @@ public class Sound : MonoBehaviour
     {
         pointAudio.Play();
     }
-    
-    
 }

@@ -18,8 +18,6 @@ public class Cloud : MonoBehaviour
 
     void Start()
     {
-        //Speed = Random.Range(-4f, -1f);
-        
         Speed = Random.Range(randomSpeed[0], randomSpeed[1]);
     }
     
@@ -30,9 +28,6 @@ public class Cloud : MonoBehaviour
 
     private void OnBecameInvisible()
     {
-        // Speed = Random.Range(-2.5f, -1f);
-        // rb.MovePosition(new Vector2(9.5f, Random.Range(-4f, -7.5f)));
-        
         Speed = Random.Range(randomSpeed[0], randomSpeed[1]);
         rb.MovePosition(new Vector2(Random.Range(randomX[0], randomX[1]), Random.Range(randomY[0], randomY[1])));
     }

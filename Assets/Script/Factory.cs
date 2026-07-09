@@ -17,7 +17,7 @@ public class Factory : MonoBehaviour
                 GameObject newPoop = ObjectPool.Instance.WifiGet();
                 if (newPoop != null)
                 {
-                    newPoop.transform.position = new Vector3(Random.Range(-17.2f, 7.5f), 25f); // 코루틴 Coroutines
+                    newPoop.transform.position = new Vector3(Random.Range(-17.2f, 7.5f), 20f); // 코루틴 Coroutines
                 }
                 currentTime = 0;
             }

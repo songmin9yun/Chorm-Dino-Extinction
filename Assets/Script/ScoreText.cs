@@ -33,12 +33,12 @@ public class ScoreText : MonoBehaviour
     IEnumerator BlinkScore()
     {
         isBlink = true;
-
+        
         for (int i = 0; i < 4; i++)
         {
             scoreText.text = "";
             yield return new WaitForSeconds(0.25f);
-
+            
             scoreText.text = $"HI {Timer.highScore:00000} {(count1-1) * 100 :00000}";
             yield return new WaitForSeconds(0.25f);
         }

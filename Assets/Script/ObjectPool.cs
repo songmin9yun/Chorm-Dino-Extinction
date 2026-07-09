@@ -5,14 +5,12 @@ public class ObjectPool : MonoBehaviour
 {
     public GameObject WifiPrefab;
     public GameObject HeartPrefab;
-    //public GameObject BurstPrefab;
     
     public int maxObject = 30;
     public int maxObject2 = 5;
     
     public List<GameObject> WifiPool;
     public List<GameObject> HeartPool; //딕셔너리 Dictionary로 List 하나로 만들고 Key룰 주고 가져오기
-    //public List<GameObject> BurstPool;
     
     public static ObjectPool Instance = null;
 
@@ -34,7 +32,6 @@ public class ObjectPool : MonoBehaviour
     {
         WifiPool = new List<GameObject>();
         HeartPool = new List<GameObject>();
-        //BurstPool = new List<GameObject>();
         
         for (int i = 0; i < maxObject; i++)
         {
@@ -49,13 +46,6 @@ public class ObjectPool : MonoBehaviour
             obj.SetActive(false);
             HeartPool.Add(obj);
         }
-        
-        // for (int i = 0; i < maxObject; i++)
-        // {
-        //     GameObject obj = Instantiate(BurstPrefab,parent);    
-        //     obj.SetActive(false);
-        //     BurstPool.Add(obj);
-        // }
     }
 
     public GameObject WifiGet()
@@ -83,17 +73,4 @@ public class ObjectPool : MonoBehaviour
         }
         return null;
     }
-
-    // public GameObject BurstGet()
-    // {
-    //     foreach (GameObject obj in BurstPool)
-    //     {
-    //         if (!obj.activeInHierarchy)
-    //         {
-    //             obj.SetActive(true);
-    //             return obj;
-    //         }
-    //     }
-    //     return null;
-    // }
 }

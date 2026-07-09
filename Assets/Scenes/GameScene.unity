@@ -2482,6 +2482,7 @@ MonoBehaviour:
   image: {fileID: 490192524}
   rectTransform: {fileID: 490192526}
   manager: {fileID: 2021640801}
+  sound: {fileID: 175489689}
   currentColor: {r: 0.3647059, g: 0.3647059, b: 0.3647059, a: 1}
   changeColor: {r: 1, g: 1, b: 1, a: 1}
   code: 1
@@ -6634,8 +6635,8 @@ Transform:
   m_GameObject: {fileID: 1536627263}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 4, y: -15.4631, z: 0}
-  m_LocalScale: {x: 120, y: 1.004302, z: 1}
+  m_LocalPosition: {x: 3.6746, y: -7.71, z: 0}
+  m_LocalScale: {x: 47.036484, y: 1.004302, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1653148874}
@@ -7214,6 +7215,7 @@ MonoBehaviour:
   image: {fileID: 1712585603}
   rectTransform: {fileID: 0}
   manager: {fileID: 0}
+  sound: {fileID: 0}
   currentColor: {r: 1, g: 1, b: 1, a: 1}
   changeColor: {r: 0, g: 0.40392157, b: 0.7529412, a: 1}
   code: 0
@@ -8267,6 +8269,7 @@ MonoBehaviour:
   image: {fileID: 2070682737}
   rectTransform: {fileID: 0}
   manager: {fileID: 0}
+  sound: {fileID: 0}
   currentColor: {r: 0.3647059, g: 0.3647059, b: 0.3647059, a: 1}
   changeColor: {r: 0, g: 0.40392157, b: 0.7529412, a: 1}
   code: 0

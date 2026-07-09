@@ -130,11 +130,10 @@ public class PlayerMove : MonoBehaviour
                 
                     hp--;
                     imagechange.change();
-                    //errorImage.change();
+                    sound.dieAudioPlay();
                     if (hp < 1)
                     {
                         timer.ResetTimer();
-                        sound.dieAudioPlay();
                         SceneManager.LoadScene("TitleScene");
                     }
                 }

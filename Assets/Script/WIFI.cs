@@ -43,7 +43,6 @@ public class WIFI : MonoBehaviour
             rb.linearVelocity = new Vector2(followspeed, -_speed + rb.linearVelocity.y);
         }
         _speed += Time.fixedDeltaTime / 400;
-        //followspeed += Time.fixedDeltaTime / 40;
     }
     
     public void OnTriggerEnter2D(Collider2D collision)

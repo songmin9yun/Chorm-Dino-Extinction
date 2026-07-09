@@ -9,6 +9,7 @@ public class ColorChange : MonoBehaviour
     
     public RectTransform rectTransform;
     public UIManager manager;
+    public Sound sound;
 
     [SerializeField] private Color currentColor;
     [SerializeField] private Color changeColor;
@@ -26,6 +27,10 @@ public class ColorChange : MonoBehaviour
     void Start()
     {
         isclicked = false;
+        if (code == 2)
+        {
+            sound.dieAudioPlay();
+        }
     }
     
     public void OnPressScorollbar()
@@ -40,6 +45,10 @@ public class ColorChange : MonoBehaviour
                 rectTransform.anchoredPosition = Vector2.Lerp(transform.position, new Vector2(-20, 0), 1);
                 manager.isClickImage();
             }
+        }
+        else if (isclicked && Timer.score > 0 && code == 1)
+        {
+            sound.dieAudioPlay();
         }
         else
         {
